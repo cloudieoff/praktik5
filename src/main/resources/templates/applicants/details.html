@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали абитуриента</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Детали абитуриента</h1>
+<div>
+    <p><strong>Фамилия:</strong> <span th:text="${applicant.lastName}"></span></p>
+    <p><strong>Имя:</strong> <span th:text="${applicant.firstName}"></span></p>
+    <p><strong>Отчество:</strong> <span th:text="${applicant.middleName}"></span></p>
+    <p><strong>Пол:</strong> <span th:text="${applicant.gender}"></span></p>
+    <p><strong>Национальность:</strong> <span th:text="${applicant.nationality}"></span></p>
+    <p><strong>Дата рождения:</strong> <span th:text="${applicant.birthDate}"></span></p>
+
+    <h3>Адрес</h3>
+    <p th:if="${applicant.address != null}">
+        <span th:text="${applicant.address.postalCode}"></span>,
+        <span th:text="${applicant.address.country}"></span>,
+        <span th:text="${applicant.address.region}"></span>,
+        <span th:text="${applicant.address.district}"></span>,
+        <span th:text="${applicant.address.city}"></span>,
+        <span th:text="${applicant.address.street}"></span>,
+        д. <span th:text="${applicant.address.house}"></span>,
+        кв. <span th:text="${applicant.address.apartment}"></span>
+    </p>
+
+    <h3>Оценки</h3>
+    <ul>
+        <li th:each="es : ${applicant.examScores}">
+            <span th:text="${es.subject}"></span> – <span th:text="${es.score}"></span>
+        </li>
+    </ul>
+
+    <p><strong>Проходной балл:</strong> <span th:text="${applicant.passingScore}"></span></p>
+</div>
+<br>
+<a th:href="@{/applicants}">⬅️ Назад к списку</a>
+</body>
+</html>

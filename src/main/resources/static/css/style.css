@@ -58,3 +58,11 @@ input[type="submit"]:hover {
 input[type="reset"]:hover {
     background-color: #da190b;
 }
+fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+legend {
+    font-weight: bold;
+}

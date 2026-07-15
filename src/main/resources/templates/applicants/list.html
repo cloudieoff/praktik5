@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список абитуриентов</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Список абитуриентов</h1>
+<a th:href="@{/applicants/create}">➕ Добавить абитуриента</a>
+<br><br>
+
+<!-- Форма поиска -->
+<form th:action="@{/applicants/search}" method="post">
+    <label>Фамилия: <input type="text" name="lastName" th:value="${lastName}"></label>
+    <label>Проходной балл (мин): <input type="number" step="0.1" name="minPassingScore" th:value="${minPassingScore}"></label>
+    <label>Предмет: <input type="text" name="subject" th:value="${subject}"></label>
+    <input type="submit" value="🔍 Поиск">
+</form>
+<br>
+
+<table>
+    <thead>
+    <tr>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Пол</th>
+        <th>Дата рождения</th>
+        <th>Проходной балл</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="a : ${applicants}">
+        <td th:text="${a.lastName}"></td>
+        <td th:text="${a.firstName}"></td>
+        <td th:text="${a.middleName}"></td>
+        <td th:text="${a.gender}"></td>
+        <td th:text="${a.birthDate}"></td>
+        <td th:text="${a.passingScore}"></td>
+        <td>
+            <a th:href="@{/applicants/details/{id}(id=${a.id})}">📄 Детали</a>
+            <a th:href="@{/applicants/edit/{id}(id=${a.id})}">✏️ Редактировать</a>
+            <a th:href="@{/applicants/delete/{id}(id=${a.id})}" onclick="return confirm('Удалить абитуриента?')">🗑️ Удалить</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

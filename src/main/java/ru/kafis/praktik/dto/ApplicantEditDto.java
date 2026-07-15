@@ -2,7 +2,7 @@ package ru.kafis.praktik.dto;
 
 import jakarta.validation.constraints.NotNull;
 
-public class StudentEditDto extends StudentCreateDto {
+public class ApplicantEditDto extends ApplicantCreateDto {
 
     @NotNull(message = "ID обязателен")
     private Long id;
